@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	// "strings"
 )
 
 func main() {
@@ -38,10 +39,23 @@ func main() {
 		fmt.Printf("Second string")
 	}
 
+	res := do_second("Привет", "Мир")
+	fmt.Println(res)
+
+
+
+
 	// http.Listen
 }
 
 // do_test Function hhich do something
 func do_test(s string) bool {
 	return true
+}
+
+// do_second Функция выполняет
+// слияние строк
+func do_second(s1 string, s2 string) string  {
+	s := s1 + s2
+	return s
 }
