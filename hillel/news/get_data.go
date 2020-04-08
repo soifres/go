@@ -30,11 +30,11 @@ func getSources(category string) []source {
 func getTopics(sources []source) []Topic {
 	var topics []Topic
 
-	for _, soure := range sources {
-		body := getData(topicURL(source.ID))
+	for _, src := range sources {
+		body := getData(topicURL(src.ID))
 
 		var topicAPI topicsAPI
-		json.Unmarshal(topics, &topicAPI)
+		json.Unmarshal(body, &topicAPI)
 
 		topics = append(topics, topicAPI.Aricles...)
 
@@ -42,14 +42,49 @@ func getTopics(sources []source) []Topic {
 	return topics
 }
 
+// q
+
+// qInTitle
+
+// sources
+// ddd, aaa, ggg
+
+// domains
+// ddd.org, aaa.ru, ggg.com
+
+// excludeDomains
+
+// from
+// 2020-04-08
+// to
+// 2020-04-08
+
+// sortBy
+//// relevancy статьи, более тесно связанные с qпервым
+//// popularity статьи из популярных источников и издателей на первом месте
+//// publishedAt  новые статьи на первом месте
+
+// language
+// ar de en es fr he it nl no pt ru se ud zh
+
 func topicURL(id string) string {
-	return fmt.Sprintf()
+	return fmt.Sprintf("https://newsapi.org/v2/everything?sources=%s&apiKey=57cdad5e23744cb8be009055886fad29", id)
+	// return fmt.Sprintf("https://newsapi.org/v2/sources?language=en&id=%s&apiKey=57cdad5e23744cb8be009055886fad29", id)
 }
+
+// category
+// business entertainment general health science sports technology
+
+// language
+// ru en
+
+// country
+// ru en us
 
 //57cdad5e23744cb8be009055886fad29
 
 func sourceURL(category string) string {
-	return fmt.Sprintf("https://newsapi.org/v2/sources?language=en&category=%s&apiKey=57cdad5e23744cb8be009055886fad29", category)
+	return fmt.Sprintf("https://newsapi.org/v2/sources?&category=%s&apiKey=57cdad5e23744cb8be009055886fad29", category)
 }
 
 func getData(url string) []byte {
@@ -63,7 +98,7 @@ func getData(url string) []byte {
 	if err != nil {
 		panic(err)
 	}
-	res.Close() // was absent
+	// res.Close() // was absent
 	return body
 
 }

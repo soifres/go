@@ -12,7 +12,7 @@ type Archive map[string][]Topic
 
 // New Возвращает архив топиков
 func New() Archive {
-	return make(map[string][]Topic, 0)
+	return make(map[string][]Topic)
 }
 
 func (a Archive) collect(category string) {
@@ -23,4 +23,9 @@ func (a Archive) collect(category string) {
 
 func (a Archive) result(category string) []Topic {
 	return a[category]
+}
+
+// GetString Return simple string
+func (a Archive) GetString() string {
+	return "test string"
 }
