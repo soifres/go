@@ -24,8 +24,3 @@ func (a Archive) collect(category string) {
 func (a Archive) result(category string) []Topic {
 	return a[category]
 }
-
-// GetString Return simple string
-func (a Archive) GetString() string {
-	return "test string"
-}
