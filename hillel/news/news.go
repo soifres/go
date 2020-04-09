@@ -1,36 +1,36 @@
 package news
 
 var (
-	collect chan string
-	result  chan []Topic
-	request chan string
+	chCollect chan string
+	chResult  chan []Topic
+	chRequest chan string
 )
 
 func init() {
-	collect = make(chan string)
-	result = make(chan []Topic)
-	request = make(chan string)
+	chCollect = make(chan string)
+	chResult = make(chan []Topic)
+	chRequest = make(chan string)
 }
 
 // Collect Do collection
 func Collect(category string) {
-	collect <- category
+	chCollect <- category
 }
 
 // Result Return result
 func Result(category string) []Topic {
-	request <- category
-	return <-result
+	chRequest <- category
+	return <-chResult
 }
 
 // Serve Serve
 func (a Archive) Serve() {
 	for {
 		select {
-		case category := <-collect:
+		case category := <-chCollect:
 			a.collect(category)
-		case category := <-request:
-			result <- a.result(category)
+		case category := <-chRequest:
+			chResult <- a.result(category)
 
 		}
 	}
