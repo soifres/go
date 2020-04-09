@@ -1,8 +1,8 @@
 package main
 
 import (
-	"go_lessons/hillel/news"
-	"go_lessons/hillel/router"
+	"github.com/soifres/go_lessons/hillel/news"
+	"github.com/soifres/go_lessons/hillel/router"
 )
 
 func main() {

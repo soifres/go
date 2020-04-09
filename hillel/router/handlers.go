@@ -3,9 +3,8 @@ package router
 import (
 	"net/http"
 
-	"go_lessons/hillel/news"
-
 	"github.com/gin-gonic/gin"
+	"github.com/soifres/go_lessons/hillel/news"
 )
 
 func indexHandler(c *gin.Context) {
