@@ -9,6 +9,9 @@ func main() {
 	r := router.New()
 	a := news.New()
 
+	// Запуск бесконечного цикла
 	go a.Serve()
+	
+	// Запуск web сервера
 	r.Run()
 }

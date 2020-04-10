@@ -15,10 +15,11 @@ func New() Archive {
 	return make(map[string][]Topic)
 }
 
-func (a Archive) collect(category string) {
+func (a Archive) collect(category string) int {
 	sources := getSources(category)
 	topics := getTopics(sources)
 	a[category] = topics
+	return len(topics)
 }
 
 func (a Archive) result(category string) []Topic {

@@ -13,7 +13,10 @@ func indexHandler(c *gin.Context) {
 
 func collectHandler(c *gin.Context) {
 	category := c.Param("category")
+	// items := news.Collect(category)
 	news.Collect(category)
+	// tmp := fmt.Sprintf("Search is initialized, collected %d items", items)
+	// c.String(http.StatusOK, tmp)
 	c.String(http.StatusOK, "Search is initialized")
 }
 
