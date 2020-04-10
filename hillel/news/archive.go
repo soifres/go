@@ -2,12 +2,14 @@ package news
 
 // Topic Топик
 type Topic struct {
-	Title  string `json:"title"`
-	Author string `json:"author"`
-	URL    string `json:"url"`
+	Title       string `json:"title"`
+	Description string `json:"description"`
+	Content     string `json:"content"`
+	Author      string `json:"author"`
+	URL         string `json:"url"`
 }
 
-//Description string `json:"description"`
+//
 
 // Archive Архив топиков
 type Archive map[string][]Topic
