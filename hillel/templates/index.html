@@ -1,0 +1,21 @@
+<!-- index.html -->
+
+{{ template "header.html" .}}
+
+<!-- <h1>Hello gin!</h1> -->
+<h1>
+    <a href="{{.catlink }}">{{ .count }}</a>
+</h1>
+<p>    
+    {{ .resstring}}
+</p>
+
+{{range .topics}}
+    <a href="">Ссылка</a>
+    <h2>{{.Title}}</h2>
+    <p>{{.Description}}</p>
+    <a href={{.URL}}>Источник</a>
+
+{{end}}
+
+{{ template "footer.html" .}}

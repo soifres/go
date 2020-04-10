@@ -7,16 +7,18 @@ var (
 	chResultCount  chan int
 )
 
+// Выполняется средой Go автоматически
 func init() {
 	chCollect = make(chan string)
 	chResultTopics = make(chan []Topic)
+	chResultCount = make(chan int)
 	chRequest = make(chan string)
 }
 
 // Collect Do collection
-func Collect(category string) {
+func Collect(category string) int {
 	chCollect <- category
-	//return <-chResultCount
+	return <-chResultCount
 }
 
 // Result Return result
@@ -31,12 +33,10 @@ func (a Archive) Serve() {
 	for {
 		select {
 		case category := <-chCollect:
-			a.collect(category)
-			// chResultCount <- a.collect(category)
+			// a.collect(category)
+			chResultCount <- a.collect(category)
 		case category := <-chRequest:
 			chResultTopics <- a.result(category)
-
 		}
 	}
-
 }

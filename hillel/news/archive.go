@@ -7,6 +7,8 @@ type Topic struct {
 	URL    string `json:"url"`
 }
 
+//Description string `json:"description"`
+
 // Archive Архив топиков
 type Archive map[string][]Topic
 

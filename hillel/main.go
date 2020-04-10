@@ -11,7 +11,10 @@ func main() {
 
 	// Запуск бесконечного цикла
 	go a.Serve()
-	
+
 	// Запуск web сервера
 	r.Run()
 }
+
+// http://localhost:8080/search/health
+// http://localhost:8080/result/health
