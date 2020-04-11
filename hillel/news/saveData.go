@@ -7,10 +7,10 @@ import (
 func saveToFile(category string, body []byte) {
 	rootFolder := "json/"
 
-	os.ErrExist
-
 }
 
-func getFile(name string, max int) os.File {
-
+func getFile(name string, max int) *File {
+	ext := ".json"
+	cname := name + ext
+	file, err := os.Open("cname")
 }
