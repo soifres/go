@@ -27,7 +27,7 @@ func getSources(category string) []source {
 	var sourceAPI sourcesAPI
 	json.Unmarshal(body, &sourceAPI)
 
-	writeInFile("sources", "sources_of_"+category, body)
+	//writeInFile("sources", "sources_of_"+category, body)
 
 	return sourceAPI.Sources
 }
@@ -41,7 +41,7 @@ func getTopics(sources []source) []Topic {
 		var topicAPI topicsAPI
 		json.Unmarshal(body, &topicAPI)
 
-		writeInFile("topics", "topics_of_"+src.ID, body)
+		//writeInFile("topics", "topics_of_"+src.ID, body)
 
 		topics = append(topics, topicAPI.Aricles...)
 
