@@ -84,7 +84,7 @@ func topicURL(id string) string {
 //57cdad5e23744cb8be009055886fad29
 
 func sourceURL(category string) string {
-	return fmt.Sprintf("https://newsapi.org/v2/sources?&category=%s&apiKey=57cdad5e23744cb8be009055886fad29", category)
+	return fmt.Sprintf("https://newsapi.org/v2/sources?&language=ru&category=%s&apiKey=57cdad5e23744cb8be009055886fad29", category)
 }
 
 func getData(url string) []byte {
