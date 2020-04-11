@@ -5,10 +5,13 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+
+	"github.com/soifres/go_lessons/filework/utils"
 )
 
 type source struct {
-	ID string `json:"id"`
+	ID       string `json:"id"`
+	Category string `json:"category"`
 }
 
 type sourcesAPI struct {
@@ -24,6 +27,8 @@ func getSources(category string) []source {
 	var sourceAPI sourcesAPI
 	json.Unmarshal(body, &sourceAPI)
 
+	writeInFile("sources", "sources_of_"+category, body)
+
 	return sourceAPI.Sources
 }
 
@@ -36,10 +41,31 @@ func getTopics(sources []source) []Topic {
 		var topicAPI topicsAPI
 		json.Unmarshal(body, &topicAPI)
 
+		writeInFile("topics", "topics_of_"+src.ID, body)
+
 		topics = append(topics, topicAPI.Aricles...)
 
 	}
 	return topics
+}
+
+func writeInFile(dirname string, name string, body []byte) {
+	nfile := utils.GetNewNFile()
+	nfile.Name = name
+	nfile.Extension = "json"
+	nfile.Directory = "./json/" + dirname + "/" //"./json/"
+	nfile.MaxCount = 1000
+	file, err := nfile.Create()
+	if err != nil {
+		fmt.Println("Error in NFile.Create():\n" + err.Error())
+		return
+	}
+	if file == nil {
+		fmt.Println("File does not created, NFile.Create() return \"nil\"")
+		return
+	}
+	defer file.Close()
+	file.WriteString(string(body))
 }
 
 // q
@@ -84,7 +110,7 @@ func topicURL(id string) string {
 //57cdad5e23744cb8be009055886fad29
 
 func sourceURL(category string) string {
-	return fmt.Sprintf("https://newsapi.org/v2/sources?&language=ru&category=%s&apiKey=57cdad5e23744cb8be009055886fad29", category)
+	return fmt.Sprintf("https://newsapi.org/v2/sources?&category=%s&apiKey=57cdad5e23744cb8be009055886fad29", category)
 }
 
 func getData(url string) []byte {
