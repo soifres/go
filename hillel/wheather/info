@@ -1,0 +1,24 @@
+/*
+	Latitude    string  `json:""`
+	Longitude   string  `json:""`
+	Sunrise     string  `json:""`
+	Sunset      string  `json:""`
+	Station     string  `json:""`
+	WindSpeed   float64 `json:""`
+*/
+
+
+// key 9eea2cdd9d39423bb8544131ae377e30
+// 0,750063755419211 мм рт.ст.
+// 0°C
+//
+
+// https://api.weatherbit.io/v2.0/current?postal_code=121552&key=9eea2cdd9d39423bb8544131ae377e30
+
+
+
+//curl 'Content-Type: application/json' https://api.weatherbit.io/v2.0/current?postal_code=121552&key=9eea2cdd9d39423bb8544131ae377e30
+
+//curl 'Accept: application/json' https://api.weatherbit.io/v2.0/current?postal_code=121552&key=9eea2cdd9d39423bb8544131ae377e30
+
+//Accept: application/json

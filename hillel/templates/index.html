@@ -15,7 +15,8 @@
     <p>{{.Description}}</p>
     <p>{{.Content}}</p>
     <a href={{.URL}}>Источник</a>
-
 {{end}}
+
+{{ template "weather.html" .}}
 
 {{ template "footer.html" .}}

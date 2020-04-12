@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
 
 	"github.com/soifres/go_lessons/filework/utils"
 )
@@ -33,5 +34,13 @@ func main() {
 	defer file.Close()
 	file.WriteString("{\"status\": \"error\",\"code\": \"apiKeyInvalid\"," +
 		"\"message\": \"Your API key is invalid or incorrect. Check your key, or go to https://newsapi.org to create a free API key.\"}")
+
+	data, err := ioutil.ReadFile("./json/job.json")
+	if err != nil {
+		fmt.Println("Error")
+		return
+	}
+
+	fmt.Println(string(data))
 
 }

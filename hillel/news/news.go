@@ -29,12 +29,12 @@ func Result(category string) []Topic {
 
 // Serve Находится в бесконечном цикле ожидания,
 // когда какой-нибудь канал получит значение.
-func (a Archive) Serve() {
+func (a Archive) Serve(isFromFile bool) {
 	for {
 		select {
 		case category := <-chCollect:
 			// a.collect(category)
-			chResultCount <- a.collect(category)
+			chResultCount <- a.collect(category, isFromFile)
 		case category := <-chRequest:
 			chResultTopics <- a.result(category)
 		}

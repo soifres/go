@@ -22,8 +22,19 @@ type topicsAPI struct {
 	Aricles []Topic `json:"articles"`
 }
 
-func getSources(category string) []source {
-	body := getData(sourceURL(category))
+func getSources(category string, isFromFile bool) []source {
+	var body []byte
+	if isFromFile {
+		data, err := ioutil.ReadFile("./json/sources/sources_of_" + category + ".json")
+		if err != nil {
+			fmt.Println("Error")
+			return nil
+		}
+		body = data
+	} else {
+		body = getData(sourceURL(category))
+	}
+
 	var sourceAPI sourcesAPI
 	json.Unmarshal(body, &sourceAPI)
 
@@ -32,12 +43,22 @@ func getSources(category string) []source {
 	return sourceAPI.Sources
 }
 
-func getTopics(sources []source) []Topic {
+func getTopics(sources []source, isFromFile bool) []Topic {
 	var topics []Topic
+	var body []byte
 
 	for _, src := range sources {
-		body := getData(topicURL(src.ID))
+		if isFromFile {
+			data, err := ioutil.ReadFile("./json/topics/topics_of_" + src.ID + ".json")
+			if err != nil {
+				fmt.Println("Error")
+				return nil
+			}
+			body = data
+		} else {
 
+			body = getData(topicURL(src.ID))
+		}
 		var topicAPI topicsAPI
 		json.Unmarshal(body, &topicAPI)
 
@@ -46,9 +67,11 @@ func getTopics(sources []source) []Topic {
 		topics = append(topics, topicAPI.Aricles...)
 
 	}
+
 	return topics
 }
 
+// Записывает данные в файл
 func writeInFile(dirname string, name string, body []byte) {
 	nfile := utils.GetNewNFile()
 	nfile.Name = name

@@ -19,9 +19,9 @@ func New() Archive {
 	return make(map[string][]Topic)
 }
 
-func (a Archive) collect(category string) int {
-	sources := getSources(category)
-	topics := getTopics(sources)
+func (a Archive) collect(category string, isFromFile bool) int {
+	sources := getSources(category, isFromFile)
+	topics := getTopics(sources, isFromFile)
 	a[category] = topics
 	return len(topics)
 }

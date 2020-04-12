@@ -7,10 +7,11 @@ import (
 
 func main() {
 	r := router.New()
-	a := news.New()
 
+	a := news.New()
+	isFromFile := true
 	// Запуск бесконечного цикла
-	go a.Serve()
+	go a.Serve(isFromFile)
 
 	// Запуск web сервера
 	r.Run()

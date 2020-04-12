@@ -6,6 +6,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/soifres/go_lessons/hillel/news"
+	"github.com/soifres/go_lessons/hillel/wheather"
 )
 
 func indexHandler(c *gin.Context) {
@@ -18,6 +19,7 @@ func indexHandler(c *gin.Context) {
 		// Pass the data that the page uses (in this case, 'title')
 		gin.H{
 			"title": "Домашняя страница",
+			"wht":   wheather.WheatherNow,
 		},
 	)
 }
@@ -36,6 +38,7 @@ func collectHandler(c *gin.Context) {
 			"title":   "Результат запроса",
 			"count":   fmt.Sprintf("Найдено %d", items),
 			"catlink": fmt.Sprintf("/result/%s", category),
+			"wht":     wheather.WheatherNow,
 			// "catlink": strconv.QuoteToASCII(fmt.Sprintf("/result/%s", category)),
 		},
 	)
@@ -69,6 +72,7 @@ func resultHandler(c *gin.Context) {
 		gin.H{
 			"title":  "Результат запроса",
 			"topics": topics,
+			"wht":    wheather.WheatherNow,
 		},
 	)
 
