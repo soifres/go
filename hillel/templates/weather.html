@@ -1,7 +1,16 @@
 <!-- weather.html -->
-<h3>Погода</h3>
-<p>Город {{ .wht.City}}</p>
-<p>Температура {{ .wht.Temperature}} °C</p>
-<p>По ощущениям {{ .wht.TemperatureApparent}} °C</p>
-<p>Давление {{ .wht.Pressure}} мм рт.ст.</p>
-<p>Влажность {{ .wht.RelativeHumidity}} %</p>
+<div>
+    <h3>Погода</h3>
+    <div>
+        <p>Город {{ .wht.City}}</p>
+        <p>Температура {{ .wht.Temperature}} °C</p>
+        <p>По ощущениям {{ .wht.TemperatureApparent}} °C</p>
+        <p>Давление {{ .wht.Pressure}} мм рт.ст.</p>
+        <p>Влажность {{ .wht.RelativeHumidity}} %</p>
+        <p>
+    </div>
+    <div>
+        <img src="https://www.weatherbit.io/static/img/icons/{{ .wht.Icon}}.png" alt="weatherbit">
+    </div>
+    </p>
+</div>

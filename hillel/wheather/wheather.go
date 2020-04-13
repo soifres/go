@@ -28,13 +28,21 @@ var country string = "RU"
 // 	TemperatureApparent string `json:"app_temp"`
 // }
 
+// Image Wheather
+type Image struct {
+	Icon        string `json:"icon"`
+	Code        string `json:"code"`
+	Description string `json:"description"`
+}
+
 // Wheather Погода
 type Wheather struct {
-	RelativeHumidity    float64 `json:"rh"`
-	Pressure            float64 `json:"pres"`
 	City                string  `json:"city_name"`
 	Temperature         float64 `json:"temp"`
 	TemperatureApparent float64 `json:"app_temp"`
+	Pressure            float64 `json:"pres"`
+	RelativeHumidity    float64 `json:"rh"`
+	Image               `json:"weather"`
 }
 
 type wheatherAPI struct {
@@ -56,6 +64,7 @@ func getWheather(url string) Wheather {
 	fmt.Println(str)
 	var wht Wheather = wapi.Data[0]
 	wht.Pressure = wht.Pressure * 0.750063755419211
+	// https://www.weatherbit.io/static/img/icons/c01n.png
 	return wht
 }
 
