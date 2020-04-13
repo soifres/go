@@ -9,6 +9,7 @@ import (
 	"net/http"
 )
 
+// WheatherNow Текуцая погода
 var WheatherNow Wheather
 
 func init() {
@@ -19,12 +20,25 @@ var postalCode string = "121552"
 var country string = "RU"
 
 // Wheather Погода
+// type Wheather struct {
+// 	RelativeHumidity    string `json:"rh"`
+// 	Pressure            string `json:"pres"`
+// 	City                string `json:"city_name"`
+// 	Temperature         string `json:"temp"`
+// 	TemperatureApparent string `json:"app_temp"`
+// }
+
+// Wheather Погода
 type Wheather struct {
+	RelativeHumidity    float64 `json:"rh"`
+	Pressure            float64 `json:"pres"`
 	City                string  `json:"city_name"`
 	Temperature         float64 `json:"temp"`
 	TemperatureApparent float64 `json:"app_temp"`
-	Pressure            float64 `json:"pres"`
-	RelativeHumidity    float64 `json:"rh"`
+}
+
+type wheatherAPI struct {
+	Data []Wheather `json:"data"`
 }
 
 // New wheather
@@ -36,10 +50,12 @@ func New() Wheather {
 func getWheather(url string) Wheather {
 	body := getData(url)
 
-	var wht Wheather
-	json.Unmarshal(body, &wht)
+	var wapi wheatherAPI
+	json.Unmarshal(body, &wapi)
 	str := fmt.Sprint(string(body))
 	fmt.Println(str)
+	var wht Wheather = wapi.Data[0]
+	wht.Pressure = wht.Pressure * 0.750063755419211
 	return wht
 }
 

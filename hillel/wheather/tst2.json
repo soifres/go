@@ -1,0 +1,48 @@
+{
+    "data": [
+        {
+            "rh": 36,
+            "pod": "d",
+            "lon": 39.4937,
+            "pres": 997.4,
+            "timezone": "Europe\/Moscow",
+            "ob_time": "2020-04-13 08:00",
+            "country_code": "RU",
+            "clouds": 100,
+            "ts": 1586764800,
+            "solar_rad": 134.3,
+            "state_code": "88",
+            "city_name": "Konstantinovskiy",
+            "wind_spd": 5,
+            "last_ob_time": "2020-04-13T08:00:00",
+            "wind_cdir_full": "south",
+            "wind_cdir": "S",
+            "slp": 1008,
+            "vis": 1.5,
+            "h_angle": -12.9,
+            "sunset": "16:27",
+            "dni": 856.02,
+            "dewpt": -6.3,
+            "snow": 0,
+            "uv": 7.01449,
+            "precip": 3.94737,
+            "wind_dir": 170,
+            "sunrise": "02:11",
+            "ghi": 671.72,
+            "dhi": 107.3,
+            "aqi": 71,
+            "lat": 57.7273,
+            "weather": {
+                "icon": "r01d",
+                "code": "500",
+                "description": "Light rain"
+            },
+            "datetime": "2020-04-13:08",
+            "temp": 8,
+            "station": "UUDL",
+            "elev_angle": 41.85,
+            "app_temp": 8
+        }
+    ],
+    "count": 1
+}
