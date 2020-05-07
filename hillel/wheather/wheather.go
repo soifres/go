@@ -51,7 +51,11 @@ type wheatherAPI struct {
 
 // New wheather
 func New() Wheather {
-	return getWheather("https://api.weatherbit.io/v2.0/current?postal_code=121552&key=9eea2cdd9d39423bb8544131ae377e30")
+	// return getWheather("https://api.weatherbit.io/v2.0/current?postal_code=121552&key=9eea2cdd9d39423bb8544131ae377e30")
+	return getWheather("https://api.weatherbit.io/v2.0/current?lat=55.740&lon=37.422&key=9eea2cdd9d39423bb8544131ae377e30")
+	// return getWheather("https://api.weatherbit.io/v2.0/current?lat=55.740948&lon=37.422611&key=9eea2cdd9d39423bb8544131ae377e30")
+	// 55.740948, 37.422611
+
 }
 
 // getWheather Возвращает объект погоды
