@@ -1,37 +1,51 @@
 package main
 
-// https://tehnojam.ru/category/development/razrabotka-web-prilozhenij-i-mikroservisov-na-golang-s-gin.html
-
 import (
+	"fmt"
+	"html/template"
 	"net/http"
-
-	"github.com/gin-gonic/gin"
+	"net/url"
+	"os"
 )
 
+var tpl = template.Must(template.ParseFiles("templates/index.html"))
+
+func indexHandler(w http.ResponseWriter, r *http.Request) {
+	// w.Write([]byte("<h1>Hello World!</h1>"))
+	tpl.Execute(w, nil)
+}
+
+func searchHandler(w http.ResponseWriter, r *http.Request) {
+	u, err := url.Parse(r.URL.String())
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte("Internal server error"))
+		return
+	}
+
+	params := u.Query()
+	searchKey := params.Get("q")
+	page := params.Get("page")
+	if page == "" {
+		page = "1"
+	}
+
+	fmt.Println("Search Query is: ", searchKey)
+	fmt.Println("Results page is: ", page)
+}
+
 func main() {
-	// Set the router as the default one provided by Gin
-	router := gin.Default()
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
 
-	// Process the templates at the start so that they don't have to be loaded
-	// from the disk again. This makes serving HTML pages very fast.
-	router.LoadHTMLFiles("templates/*")
+	mux := http.NewServeMux() ///
 
-	// Define the route for the index page and display the index.html template
-	// To start with, we'll use an inline route handler. Later on, we'll create
-	// standalone functions that will be used as route handlers.
-	router.GET("/", func(c *gin.Context) {
-		// Call the HTML method of the Context to render a template
-		c.HTML(
-			// Set the HTTP status to 200 (OK)
-			http.StatusOK,
-			// Use the index.html template
-			"index.html",
-			// Pass the data that the page uses (in this case, 'title')
-			gin.H{
-				"title": "Home Page",
-			},
-		)
-	})
-	// Start serving the application
-	router.Run()
+	fs := http.FileServer(http.Dir("assets"))
+	mux.Handle("/assets/", http.StripPrefix("/assets/", fs))
+
+	mux.HandleFunc("/search", searchHandler)
+	mux.HandleFunc("/", indexHandler)
+	http.ListenAndServe(":"+port, mux)
 }
