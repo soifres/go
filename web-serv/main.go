@@ -4,10 +4,7 @@ import (
 	"fmt"
 	"html/template"
 	"net/http"
-<<<<<<< HEAD
-=======
 	"net/url"
->>>>>>> ad1e8995c1a5b9a9184ac386dbe3cb9491dd412d
 	"os"
 )
 
@@ -40,18 +37,6 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 func main() {
 	port := os.Getenv("PORT")
 	if port == "" {
-<<<<<<< HEAD
-		port = "3000"
-	}
-	mux := http.NewServeMux()
-
-	mux.HandleFunc("/", indexHandler)
-	http.ListenAndServe(":"+port, mux)
-}
-
-func indexHandler(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("<h1>Hello World!</h1>"))
-=======
 		port = "8080"
 	}
 
@@ -63,5 +48,4 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	mux.HandleFunc("/search", searchHandler)
 	mux.HandleFunc("/", indexHandler)
 	http.ListenAndServe(":"+port, mux)
->>>>>>> ad1e8995c1a5b9a9184ac386dbe3cb9491dd412d
 }
