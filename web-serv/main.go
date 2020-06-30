@@ -8,11 +8,12 @@ import (
 	"os"
 )
 
+// ******
 var tpl = template.Must(template.ParseFiles("templates/index.html"))
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
 	// w.Write([]byte("<h1>Hello World!</h1>"))
-	tpl.Execute(w, nil)
+	tpl.Execute(w, nil) //
 }
 
 func searchHandler(w http.ResponseWriter, r *http.Request) {
@@ -35,6 +36,8 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+
+	//ruuter := mux.NewRouter()
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "8080"
